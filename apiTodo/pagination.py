@@ -1,24 +1,22 @@
-from rest_framework import pagination
+# from rest_framework import pagination
+from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination, CursorPagination
 
-class MyPageNumberPagination(pagination.PageNumberPagination):
+
+class SmallPageNumberPagination(PageNumberPagination):
     page_size = 1
-    page_size_query_param = 'page_size' # client tarafından sayfadaki ürün sayısının belirlenmesine aracılık eder 
     page_query_param = 'sayfa'
-    max_page_size = 100
-
-class LargePageNumberPagination(pagination.PageNumberPagination):
-    page_size = 3
 
 
+class LargePageNumberPagination(PageNumberPagination):
+    page_size = 5
+    # page_query_param = 'sayfa'
 
-class MyLimitOffsetPagination(pagination.LimitOffsetPagination):
+
+class MyLimitOffsetPagination(LimitOffsetPagination):
     default_limit = 1
-    max_limit = 10
-    limit_query_param = 'per_page' #default limit parametresi
-    offset_query_param = 'page'
+    # limit_query_param = 'sayfadaki_eleman_sayisi'  # defaults to "limit"
+    # offset_query_param = "baslangic"  # defaults to `offset`
 
-class MyCursorPagination(pagination.CursorPagination):
-    page_size = 2
-    ordering = '-createdDate'
-    cursor_query_param = 'cursor'
-    
+class MyCursorPagination(CursorPagination):
+    ordering = "createdDate"
+    page_size = 1

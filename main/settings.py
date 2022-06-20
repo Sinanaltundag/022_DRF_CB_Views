@@ -40,9 +40,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # third party apps
     "rest_framework",
-    "django_filters",
+    'django_filters',
+    'rest_framework.authtoken',
     # my apps
     "apiTodo",
+    "users"
 ]
 
 MIDDLEWARE = [
@@ -141,15 +143,14 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
 REST_FRAMEWORK = {
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    # 'PAGE_SIZE': 3, # default: 3 limit belirledik
+    # 'PAGE_SIZE': 2,
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
-    #  'DEFAULT_PAGINATION_CLASS': 'apiTodo.pagination.MyCursorPagination', # default from local pagination 
-    # 'PAGE_SIZE': 2,
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
-
+    # 'DEFAULT_PAGINATION_CLASS': 'apiTodo.pagination.MyCursorPagination',
+    # 'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
 }
-
